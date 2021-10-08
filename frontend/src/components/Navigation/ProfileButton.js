@@ -2,9 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
-// const element = <FontAwesomeIcon icon="fa-solid fa-face-frown-slight" />
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
