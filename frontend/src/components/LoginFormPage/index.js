@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import './LoginForm.css';
-
+import styles from './index.module.css';
 function LoginFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
@@ -31,8 +30,8 @@ function LoginFormPage() {
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
-        Username or Email
+      <label className={styles.label}>
+        Username or Email!!!!
         <input
           type="text"
           value={credential}
