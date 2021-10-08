@@ -1,0 +1,44 @@
+/* .nav{
+    display:flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.leftNav{
+    display:flex;
+    margin-left: 20px;
+}
+
+.rightNav {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-right: 20px;
+  gap: 10px;
+  align-items: baseline;
+}
+
+div.rightNav a {
+  text-decoration: none;
+  border:solid 0.1em black;
+  border-radius:5px
+}
+
+button{
+    display:inline-block;
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#2b2a2a;
+    text-align:center;
+    transition: all 0.2s;
+    }
+
+button:hover {
+  color:white;
+  background-color:rgb(44, 44, 242);
+} */
