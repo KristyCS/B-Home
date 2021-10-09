@@ -26,13 +26,83 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser3',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser4',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser5',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser6',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser7',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser8',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser9',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser10',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser11',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        email: faker.internet.email(),
+        username: 'FakeUser12',
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ], {});
   },
 
   down: (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete('Users', {
-      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] }
+      username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2','FakeUser3', 'FakeUser4','FakeUser5', 'FakeUser6','FakeUser7', 'FakeUser8','FakeUser9', 'FakeUser10','FakeUser11', 'FakeUser12'] }
     }, {});
   }
 };
