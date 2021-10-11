@@ -1,11 +1,9 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Listing, Booking, Review } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-
 const router = express.Router();
 const validateSignup = [
   check("email")
@@ -23,7 +21,6 @@ const validateSignup = [
     .withMessage("Password must be 6 characters or more."),
   handleValidationErrors,
 ];
-
 // Sign up
 router.post(
   "/",
@@ -39,5 +36,42 @@ router.post(
     });
   })
 );
+
+//get all bookings of a specified user
+router.get(
+  "/:id((\\d+))/bookings",
+  asyncHandler(async function (req, res) {
+    const user_id = parseInt(req.params.id, 10);
+    const bookings = await Booking.findAll({
+      where: {
+        user_id,
+      },
+      include: [Listing, User],
+    });
+    return res.json(bookings);
+  })
+);
+
+//get all reviews of a specified user
+router.get(
+  "/:id((\\d+))/reviews",
+  asyncHandler(async function (req, res) {
+    const user_id = parseInt(req.params.id, 10);
+    const reviews = await Review.findAll({
+      where: {
+        user_id,
+      },
+      include: [Listing, User],
+    });
+    return res.json(reviews);
+  })
+);
+
+
+
+
+
+
+
 
 module.exports = router;
