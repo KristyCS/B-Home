@@ -3,49 +3,64 @@ import { useEffect, useState } from "react";
 // Import hooks from 'react-redux'
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./homeBody.module.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // Import the thunk creator
 import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import { getListings } from "../../store/listing";
 
 const HomeBody = () => {
   // Declare variables from hooks
   const dispatch = useDispatch();
-  const listings = useSelector((state) => Object.values(state.listing));
+  const listingsObj = useSelector((state) => state.listing);
   const [regionOptions, setRegionOptions] = useState(false);
   const [region, setRegion] = useState("");
-  const [start_date, setStart_date] = useState("");
-  const [end_date, setEnd_date] = useState("");
-  // Use a 'react' hook and cause a side effect
-
-  
-  useEffect(()=>{
-    const regions = [];
-    console.log(listings,"@@@@@@@@");
-    for (const id in listings) {
-      regions.push(listings[id].Location.city);
-    }
-    if (!regionOptions) {
-      setRegionOptions(regions);
-    }
-    console.log(regionOptions,"#########")
-  },[regionOptions,region, start_date,end_date]);
-  
+  const [start_date, setStart_date] = useState(new Date());
+  const [end_date, setEnd_date] = useState(new Date());
+  const listings =Object.values(listingsObj);
   useEffect(() => {
     dispatch(getListings());
   }, [dispatch]);
-  
+
+  useEffect(() => {
+    const regions = [];
+    for (const listing of listings) {
+      regions.push(listing.Location.city);
+    }
+    setRegionOptions(regions);
+  }, [listings]);
+
+
+
   return (
-    <div className={styles.main}>
-      
-      <Dropdown
-        options={regionOptions}
-        onChange={(e) => {
-          setRegion(e.target.value);
-        }}
-        value={region}
-        placeholder="Select an region"
+    <>
+      <div className={styles.main}>
+      <Select
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        options={options}
       />
-    </div>
+          {/* <Dropdown
+            options={regionOptions}
+            onChange={(e) => {
+              setRegion(e.target.value);
+            }}
+            value={region}
+            placeholder="I want to live at"
+          /> */}
+          <DatePicker
+            selected={start_date}
+            onChange={(date) => setStart_date(date)}
+          />
+          <DatePicker
+            selected={end_date}
+            onChange={(date) => setEnd_date(date)}
+          />
+          <navLink to="/listings" activeClassName="searching"> Search! </navLink>
+        
+      </div>
+    </>
   );
 };
 
