@@ -1,18 +1,23 @@
 // Create a router here
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 // Since we're doing database stuff, you'll want some kind of asyncHandler
-const asyncHandler = require('express-async-handler');
+const asyncHandler = require("express-async-handler");
 
 // Take a second to import the database stuff you'll need
-const { Listing, User, Review } = require('../../db/models');
+const { Host, Listing, User, Review, Location } = require("../../db/models");
 // Here's where you'd also import other middleware
 
 // Create the API route here
-router.get('', asyncHandler(async (req, res) => {
-  const listings = await Listing.findAll();
-  res.json(listings);
-}));
+router.get(
+  "",
+  asyncHandler(async (req, res) => {
+    const listings = await Listing.findAll({
+      include: [Host, Location],
+    });
+    res.json(listings);
+  })
+);
 
 //get all reviews of a specified listing
 router.get(
@@ -28,7 +33,6 @@ router.get(
     return res.json(reviews);
   })
 );
-
 
 // Remember to export the router, too
 module.exports = router;

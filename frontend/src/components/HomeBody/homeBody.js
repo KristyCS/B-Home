@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { getListings } from "../../store/listing";
-
+import Select from 'react-select';
 const HomeBody = () => {
   // Declare variables from hooks
   const dispatch = useDispatch();
@@ -28,7 +28,13 @@ const HomeBody = () => {
     for (const listing of listings) {
       regions.push(listing.Location.city);
     }
-    setRegionOptions(regions);
+    const options = [
+      { value: 'chocolate', label: 'Chocolate' },
+      { value: 'strawberry', label: 'Strawberry' },
+      { value: 'vanilla', label: 'Vanilla' },
+    ];
+    setRegionOptions(options);
+    return;
   }, [listings]);
 
 
@@ -37,9 +43,9 @@ const HomeBody = () => {
     <>
       <div className={styles.main}>
       <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
-        options={options}
+        defaultValue={region}
+        onChange={setRegion}
+        options={regionOptions}
       />
           {/* <Dropdown
             options={regionOptions}

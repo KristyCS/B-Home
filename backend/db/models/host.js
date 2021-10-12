@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Host = sequelize.define('Host', {
     name: DataTypes.STRING,
-    userId: DataTypes.INTEGER,
+    user_id: DataTypes.INTEGER,
     about: DataTypes.TEXT,
     host_since: DataTypes.DATE
   }, {});

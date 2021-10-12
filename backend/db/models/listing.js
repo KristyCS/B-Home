@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Listing.associate = function(models) {
     // associations can be defined here
-    Listing.hasOne(models.Location, {foreignKey:"location_id"});
+    Listing.hasOne(models.Location, {foreignKey:"id"});
+    Listing.hasOne(models.Host, {foreignKey:"id"});
     Listing.hasMany(models.Review, {foreignKey: "listing_id"});
     Listing.hasMany(models.Booking, {foreignKey: "listing_id"});
     Listing.hasMany(models.Image, {foreignKey: "listing_id"});

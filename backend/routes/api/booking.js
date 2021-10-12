@@ -18,7 +18,7 @@ const validateToBook = [
     .withMessage("Please provide an existing listing."),
   check("end_date").custom((value, { req }) => {
     if (new Date(value) <= new Date(req.body.start_date)) {
-      throw new Error("End date of lab must be valid and after start date");
+      throw new Error("End date must be after start date.");
     }
   }),
   handleValidationErrors,
@@ -26,6 +26,7 @@ const validateToBook = [
 //create a booking
 router.post(
   "",
+  validateToBook,
   asyncHandler(async function (req, res) {
     const booking = await Booking.create(req.body);
     return res.json(booking);
