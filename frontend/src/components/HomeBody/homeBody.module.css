@@ -5,6 +5,12 @@
   background-repeat: round;
 }
 
-.searching{
+
+.active {
   border: solid 1px black;
+}
+
+.red {
+  color: red;
+  font-size: 30px;
 }

@@ -1,24 +1,28 @@
 // Import hooks from 'react'. Which hook is meant for causing side effects?
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 // Import hooks from 'react-redux'
+import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./homeBody.module.css";
+import styles from "./HomeBody.module.css";
+import {NavLink } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// Import the thunk creator
+import { useListing } from "../../context/Listings";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { getListings } from "../../store/listing";
-import Select from 'react-select';
+import { useSearch } from "../../context/SearchListings";
 const HomeBody = () => {
-  // Declare variables from hooks
   const dispatch = useDispatch();
+  const {setListings} = useListing();
+  const {start_date, end_date, region,setStartDate,setEndDate, setRegion}  = useSearch();
+  const history = useHistory();
   const listingsObj = useSelector((state) => state.listing);
   const [regionOptions, setRegionOptions] = useState(false);
-  const [region, setRegion] = useState("");
-  const [start_date, setStart_date] = useState(new Date());
-  const [end_date, setEnd_date] = useState(new Date());
-  const listings =Object.values(listingsObj);
+  
+  const listings = useMemo(()=>{
+    return Object.values(listingsObj)
+  },[listingsObj]);
   useEffect(() => {
     dispatch(getListings());
   }, [dispatch]);
@@ -28,43 +32,36 @@ const HomeBody = () => {
     for (const listing of listings) {
       regions.push(listing.Location.city);
     }
-    const options = [
-      { value: 'chocolate', label: 'Chocolate' },
-      { value: 'strawberry', label: 'Strawberry' },
-      { value: 'vanilla', label: 'Vanilla' },
-    ];
-    setRegionOptions(options);
-    return;
+    setListings(listings);
+    setRegionOptions(regions);
   }, [listings]);
 
-
+const searchHandler = (e)=>{
+  e.preventDefault();
+  history.push('/searchListings')
+}
 
   return (
     <>
       <div className={styles.main}>
-      <Select
-        defaultValue={region}
-        onChange={setRegion}
-        options={regionOptions}
-      />
-          {/* <Dropdown
+          <Dropdown
             options={regionOptions}
-            onChange={(e) => {
-              setRegion(e.target.value);
+            onChange={(value) => {
+              setRegion(value.value);
             }}
             value={region}
             placeholder="I want to live at"
-          /> */}
+          />
           <DatePicker
             selected={start_date}
-            onChange={(date) => setStart_date(date)}
+            onChange={(date) => setStartDate(date)}
           />
           <DatePicker
             selected={end_date}
-            onChange={(date) => setEnd_date(date)}
+            onChange={(date) => setEndDate(date)}
           />
-          <navLink to="/listings" activeClassName="searching"> Search! </navLink>
-        
+          <NavLink to="/listings" onClick={searchHandler} className={styles.active}> Search! </NavLink>
+          {console.log(region)}
       </div>
     </>
   );

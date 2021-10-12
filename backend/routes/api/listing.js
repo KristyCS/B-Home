@@ -5,7 +5,7 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 
 // Take a second to import the database stuff you'll need
-const { Host, Listing, User, Review, Location } = require("../../db/models");
+const { Host, Listing, User, Review, Location,Image } = require("../../db/models");
 // Here's where you'd also import other middleware
 
 // Create the API route here
@@ -16,6 +16,18 @@ router.get(
       include: [Host, Location],
     });
     res.json(listings);
+  })
+);
+
+// Create the API route here
+router.get(
+  "/:id((\\d+))",
+  asyncHandler(async (req, res) => {
+    const listing_id = parseInt(req.params.id, 10);
+    const listing = await Listing.findByPk(listing_id, {
+      include: [Host, Location, Image],
+    });
+    res.json(listing);
   })
 );
 

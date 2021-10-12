@@ -1,6 +1,6 @@
+import { csrfFetch } from "./csrf";
 // Define Action Types as Constants
-const LOAD_LISTINGS = 'listings/loadListings';
-
+const LOAD_LISTINGS = "listings/loadListings";
 // Define Action Creators
 const loadListings = (listings) => ({
   type: LOAD_LISTINGS,
@@ -9,7 +9,7 @@ const loadListings = (listings) => ({
 
 // Define Thunks
 export const getListings = () => async (dispatch) => {
-  const response = await fetch('/api/listings');
+  const response = await csrfFetch("/api/listings");
   const listings = await response.json();
   dispatch(loadListings(listings));
 };
@@ -23,7 +23,7 @@ const listingsReducer = (state = initialState, action) => {
     case LOAD_LISTINGS:
       const newState = { ...state };
       console.log(action.listings);
-      action.listings.forEach(listing => {
+      action.listings.forEach((listing) => {
         newState[listing.id] = listing;
       });
       return newState;
