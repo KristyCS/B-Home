@@ -15,9 +15,7 @@ import { useSearch } from "../../context/SearchListings";
 import { useListing } from "../../context/Listings";
 const ListingDetails = () => {
   const dispatch = useDispatch();
-
-  
-  const listingId = parseInt(useParams().listingId, 10);
+  const {listingId} = useParams();
   const { listings } = useListing();
   const listingArray = Object.values(listings);
   console.log(listingArray, "%%%");
@@ -31,7 +29,7 @@ const ListingDetails = () => {
 
   const book = (e) => {
     e.preventDefault();
-    
+
   };
 
   return (
