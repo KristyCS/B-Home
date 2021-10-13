@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 // import styles from "./homeBody.module.css";
 import { NavLink } from "react-router-dom";
 import { getListings } from "../../store/listing";
-import { useSearch } from "../../context/SearchListings";
+
 const ListingSearchResults = () => {
   const dispatch = useDispatch();
-  const { region } = useSearch();
+  const region = localStorage.getItem("region");
   const [listingsAtRegion, setListingAtRegion] = useState([]);
   const listingsObj = useSelector((state) => state.listing);
   const listings = useMemo(() => {

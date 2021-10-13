@@ -1,10 +1,14 @@
 // Import hooks from 'react'. Which hook is meant for causing side effects?
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState} from "react";
 import { useHistory, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { createBooking } from "../../store/booking";
 import { getListings } from "../../store/listing";
-import { createComment, loadCommentsByListingId ,editComment} from "../../store/comment";
+import {
+  createComment,
+  loadCommentsByListingId,
+  editComment,
+} from "../../store/comment";
 import * as sessionActions from "../../store/session";
 import { useSearch } from "../../context/SearchListings";
 import CommentRow from "../CommentRow/CommentRow";
@@ -12,20 +16,22 @@ import { useEditComment } from "../../context/EditComment";
 const ListingDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { edit, commentId,setEdit } = useEditComment();
+  const { edit, commentId, setEdit,commentToBeEdit } = useEditComment();
   const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const currentListing = useSelector((state) => state.listing[listingId]);
   const allComments = useSelector((state) => Object.values(state.comments));
   const [comments, setComments] = useState();
-
   useEffect(() => {
     dispatch(sessionActions.restoreUser());
     dispatch(getListings());
     dispatch(loadCommentsByListingId(parseInt(listingId, 10)));
   }, [dispatch]);
+  
+   localStorage.setItem("lat",currentListing?.Location.latitude);
+   localStorage.setItem("lng",currentListing?.Location.longtitude);
 
-  const { start_date, end_date } = useSearch();
+  
   const submitComment = async (e) => {
     e.preventDefault();
     const payload = {
@@ -37,10 +43,11 @@ const ListingDetails = () => {
     setComments("");
   };
 
-  const editCommentHandler = async (e) =>{
+  const editCommentHandler = async (e) => {
     e.preventDefault();
+    console.log(e.target.id, "&&&&&&");
     const payload = {
-      id:e.target.id,
+      id: parseInt(e.target.id, 10),
       user_id: sessionUser.id,
       listing_id: parseInt(listingId, 10),
       comments,
@@ -48,14 +55,14 @@ const ListingDetails = () => {
     await dispatch(editComment(payload));
     setComments("");
     setEdit(false);
-  }
+  };
   const book = async (e) => {
     e.preventDefault();
     const payload = {
       user_id: sessionUser.id,
       listing_id: parseInt(listingId, 10),
-      start_date,
-      end_date,
+      start_date:new Date(localStorage.getItem("start_date")),
+      end_date:new Date(localStorage.getItem("end_date")),
       price: 100,
     };
     const booking = await dispatch(createBooking(payload));
@@ -63,9 +70,10 @@ const ListingDetails = () => {
       history.push("/");
     }
   };
-  ///allComments.find(singleComment=>{singleComment.id===commentId}).comments
+  
   return (
     <>
+    {/* { localStorage.setItem("lat",currentListing?.Location?.latitude)} */}
       <div>
         <form onSubmit={book}>
           <button type="submit"> BOOK!</button>
@@ -82,8 +90,8 @@ const ListingDetails = () => {
       </div>
       <div>
         {!edit && (
-          <form onSubmittextarea={submitComment}>
-            <textarea 
+          <form onSubmit={submitComment}>
+            <textarea
               value={comments}
               placeholder="Add your entry"
               onChange={(e) => setComments(e.target.value)}
@@ -92,11 +100,10 @@ const ListingDetails = () => {
           </form>
         )}
         {edit && (
-          <form onSubmittextarea={editCommentHandler}>
-            <textarea onSubmittextarea={editComment}
-              value="234"
-              id={commentId}
-              placeholder="Add your entry"
+          <form id={commentId} onSubmit={editCommentHandler}>
+            <textarea
+              value={comments}
+              placeholder={commentToBeEdit}
               onChange={(e) => setComments(e.target.value)}
             />
             <button type="submit">edit</button>

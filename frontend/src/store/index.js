@@ -5,11 +5,13 @@ import sessionReducer from './session';
 import commentsReducer from './comment';
 import listingReducer from './listing';
 import bookingReducer from './booking';
+import mapsReducer from "./maps";
 const rootReducer = combineReducers({
   session:sessionReducer,
   listing:listingReducer,
   booking:bookingReducer,
   comments:commentsReducer,
+  maps:mapsReducer,
 });
 
 let enhancer;

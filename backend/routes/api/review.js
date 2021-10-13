@@ -25,6 +25,7 @@ router.post(
     const review = await Review.create(req.body);
     const user = await User.findByPk(review.user_id);
     review.dataValues.User = user;
+    console.log(review,'在后台里')
     return res.json(review);
   })
 );
@@ -44,11 +45,13 @@ router.put(
   "/:id",
   asyncHandler(async (req, res) => {
     const { comments } = req.body;
-    const review = await Review.findByPk(parseInt(req.params.id, 10));
+    const review = await Review.findByPk(parseInt(req.params.id, 10),{
+      include:[User]
+    });
     await review.update({
       comments,
     });
-    return res.json();
+    return res.json(review);
   })
 );
 

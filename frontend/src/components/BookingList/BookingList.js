@@ -36,9 +36,9 @@ const BookingList = () => {
         <tbody>
           {bookings.map((booking) => (
             <tr>
-              <td>{booking.Listing.name}</td>
-              <td>{booking.start_date}</td>
-              <td>{booking.end_date}</td>
+              <td>{booking?.Listing?.name}</td>
+              <td>{booking?.start_date}</td>
+              <td>{booking?.end_date}</td>
               <td><NavLink to={`/bookings/${booking.id}`} >view</NavLink></td>
             </tr>
           ))}

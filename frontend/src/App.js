@@ -10,6 +10,7 @@ import ListingSearchResults from "./components/ListingSearchResults/ListingSearc
 import ListingDetails from "./components/ListingDetails/ListingDetails";
 import BookingList from "./components/BookingList/BookingList";
 import BookingDetails from "./components/BookingDetails/BookingDetails";
+import MapContainer from "./components/Maps";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,6 +27,7 @@ function App() {
         </Route>
         <Route exact path="/listings/:listingId">
           <ListingDetails />
+          <MapContainer/>
         </Route>
         <Route exact path="/bookings/:bookingId">
           <BookingDetails />

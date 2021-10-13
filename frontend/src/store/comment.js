@@ -33,9 +33,9 @@ export const deleteComment = (commentId) => async (dispatch) => {
 };
 
 export const editComment = (comment) => async (dispatch) => {
-  console.log("我在store",comment)
+  console.log("我在store!!!!!!!", comment);
   const response = await csrfFetch(`/api/reviews/${comment.id}`, {
-    method: "post",
+    method: "put",
     headers: {
       "Content-Type": "application/json",
     },
@@ -97,7 +97,7 @@ const commentsReducer = (state = initialState, action) => {
     // case UPDATE: {
     //   const newState = {...state};
     //   newState[action.comment.id] = action.comment;
-    //   return 
+    //   return
     // }
     default:
       return state;
