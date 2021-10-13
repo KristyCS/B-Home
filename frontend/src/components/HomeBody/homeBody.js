@@ -1,20 +1,17 @@
-// Import hooks from 'react'. Which hook is meant for causing side effects?
 import { useEffect, useState,useMemo } from "react";
-// Import hooks from 'react-redux'
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./HomeBody.module.css";
 import {NavLink } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useListing } from "../../context/Listings";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { getListings } from "../../store/listing";
 import { useSearch } from "../../context/SearchListings";
+
 const HomeBody = () => {
   const dispatch = useDispatch();
-  const {setListings} = useListing();
   const {start_date, end_date, region,setStartDate,setEndDate, setRegion}  = useSearch();
   const history = useHistory();
   const listingsObj = useSelector((state) => state.listing);
@@ -23,6 +20,7 @@ const HomeBody = () => {
   const listings = useMemo(()=>{
     return Object.values(listingsObj)
   },[listingsObj]);
+  
   useEffect(() => {
     dispatch(getListings());
   }, [dispatch]);
@@ -32,7 +30,6 @@ const HomeBody = () => {
     for (const listing of listings) {
       regions.push(listing.Location.city);
     }
-    setListings(listings);
     setRegionOptions(regions);
   }, [listings]);
 

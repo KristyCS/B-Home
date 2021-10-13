@@ -23,10 +23,10 @@ const validateToBook = [
   }),
   handleValidationErrors,
 ];
+// validateToBook,
 //create a booking
 router.post(
   "",
-  validateToBook,
   asyncHandler(async function (req, res) {
     const booking = await Booking.create(req.body);
     return res.json(booking);

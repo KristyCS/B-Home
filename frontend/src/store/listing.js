@@ -14,6 +14,7 @@ export const getListings = () => async (dispatch) => {
   dispatch(loadListings(listings));
 };
 
+
 // Define an initial state
 const initialState = {};
 
@@ -30,6 +31,10 @@ const listingsReducer = (state = initialState, action) => {
     default:
       return state;
   }
+
+
+
+
 };
 
 // Export the reducer

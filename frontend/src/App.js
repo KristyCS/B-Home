@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation/Navigation";
 import HomeBody from "./components/HomeBody/HomeBody";
 import ListingSearchResults from "./components/ListingSearchResults/ListingSearchResults";
 import ListingDetails from "./components/ListingDetails/ListingDetails";
+import BookingList from "./components/BookingList/BookingList";
+import BookingDetails from "./components/BookingDetails/BookingDetails";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +26,12 @@ function App() {
         </Route>
         <Route exact path="/listings/:listingId">
           <ListingDetails />
+        </Route>
+        <Route exact path="/bookings/:bookingId">
+          <BookingDetails />
+        </Route>
+        <Route exact path="/users/:userId/bookings">
+          <BookingList />
         </Route>
         <Route>
           <HomeBody />
