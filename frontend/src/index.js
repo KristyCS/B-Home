@@ -10,7 +10,7 @@ import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import { SearchProvider } from "./context/SearchListings";
-import { ListingProvider } from "./context/Listings";
+import {  EditCommentProvider } from "./context/EditComment";
 
 const store = configureStore();
 
@@ -26,13 +26,13 @@ function Root() {
   return (
     <Provider store={store}>
       <ModalProvider>
-        <ListingProvider>
+        <EditCommentProvider>
         <SearchProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </SearchProvider>
-        </ListingProvider>
+        </EditCommentProvider>
       </ModalProvider>
     </Provider>
   );

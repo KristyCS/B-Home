@@ -1,12 +1,16 @@
 import { csrfFetch } from "./csrf";
 const ADD_ONE = "comment/ADD_ONE";
 const LOAD_BY_LISTING_ID = "comment/LOADBYLISTING";
-
+const UPDATE = "comment/UPDATE";
 const REMOVE_COMMENT = "comment/REMOVE";
 
 const loadComments = (comments) => ({
   type: LOAD_BY_LISTING_ID,
   comments,
+});
+const updateComment = (comment) => ({
+  type: UPDATE,
+  comment,
 });
 
 const removeComment = (commentId) => ({
@@ -25,6 +29,22 @@ export const deleteComment = (commentId) => async (dispatch) => {
   });
   if (response.ok) {
     dispatch(removeComment(commentId));
+  }
+};
+
+export const editComment = (comment) => async (dispatch) => {
+  console.log("我在store",comment)
+  const response = await csrfFetch(`/api/reviews/${comment.id}`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(comment),
+  });
+  if (response.ok) {
+    const comment = await response.json();
+    dispatch(addOneComment(comment));
+    return comment;
   }
 };
 
@@ -74,6 +94,11 @@ const commentsReducer = (state = initialState, action) => {
       delete newState[action.commentId];
       return newState;
     }
+    // case UPDATE: {
+    //   const newState = {...state};
+    //   newState[action.comment.id] = action.comment;
+    //   return 
+    // }
     default:
       return state;
   }

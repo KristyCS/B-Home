@@ -7,7 +7,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 // Take a second to import the database stuff you'll need
-const { Review } = require("../../db/models");
+const { Review,User } = require("../../db/models");
 const validateToReview = [
   check("comments")
     .exists({ checkFalsy: true })
@@ -23,6 +23,8 @@ router.post(
   validateToReview,
   asyncHandler(async function (req, res) {
     const review = await Review.create(req.body);
+    const user = await User.findByPk(review.user_id);
+    review.dataValues.User = user;
     return res.json(review);
   })
 );
