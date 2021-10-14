@@ -5,6 +5,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import * as sessionActions from "../../store/session";
+import SignupFormModal from '../SignupFormModal';
 // import styles from './navigation.module.css';
 
 function Navigation({ isLoaded }){
@@ -23,7 +24,8 @@ function Navigation({ isLoaded }){
       <>
       <p className="" onClick={HandlDemoLogin}>Demo User</p>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <SignupFormModal />
+        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
   }

@@ -5,16 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { createBooking } from "../../store/booking";
 import { getListings } from "../../store/listing";
 import CommentModal from "../CommentModal";
-import {
-  createComment,
-  loadCommentsByListingId,
-  editComment,
-} from "../../store/comment";
+import { loadCommentsByListingId } from "../../store/comment";
 import * as sessionActions from "../../store/session";
 import LoginForm from "../LoginFormModal/LoginForm.js";
 import { Modal } from "../../context/Modal";
 import styles from "./ListingDetails.module.css";
-import CommentRow from "../CommentRow/CommentRow";
 import { useEditComment } from "../../context/EditComment";
 const ListingDetails = () => {
   const dispatch = useDispatch();
@@ -24,8 +19,7 @@ const ListingDetails = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const currentListing = useSelector((state) => state.listing[listingId]);
   const allComments = useSelector((state) => Object.values(state.comments));
-  
-  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser());
     dispatch(getListings());
@@ -33,8 +27,6 @@ const ListingDetails = () => {
   }, [dispatch]);
   localStorage.setItem("lat", currentListing?.Location.latitude);
   localStorage.setItem("lng", currentListing?.Location.longtitude);
-
-  
 
   const book = async (e) => {
     e.preventDefault();
@@ -80,8 +72,12 @@ const ListingDetails = () => {
         </button>
       </div>
       <div>
-        <CommentModal commentsNum={allComments.length} allComments={allComments} listingId={listingId}/>
-        </div>
+        <CommentModal
+          commentsNum={allComments.length}
+          allComments={allComments}
+          listingId={listingId}
+        />
+      </div>
       <div className={styles.imageShow}>
         {currentListing?.Images.map((singleImage) => (
           <img key={singleImage.id} src={singleImage.img_url} />
@@ -93,8 +89,9 @@ const ListingDetails = () => {
           {currentListing?.Host.name}
         </h3>
         <p>
-          {currentListing?.accommodates} guests · {currentListing?.property_type}{" "}
-          · {currentListing?.beds}beds · {currentListing?.bathrooms}bath
+          {currentListing?.accommodates} guests ·{" "}
+          {currentListing?.property_type} · {currentListing?.beds}beds ·{" "}
+          {currentListing?.bathrooms}bath
         </p>
         <label> Description </label>
         <p> {currentListing?.description} </p>
@@ -102,36 +99,6 @@ const ListingDetails = () => {
       <div>
         <h3>What this place offers </h3>
       </div>
-      {/* <div>
-        {allComments.map((singlecomment) => (
-          <CommentRow key={singlecomment.id} singlecomment={singlecomment} />
-        ))}
-      </div>
-      <div>
-        {!edit && (
-          <form onSubmit={submitComment}>
-            <textarea
-              value={comments}
-              required
-              placeholder="Add your entry"
-              onChange={(e) => setComments(e.target.value)}
-            />
-            <button type="submit">submit</button>{" "}
-          </form>
-        )}
-        {edit && (
-          <form id={commentId} onSubmit={editCommentHandler}>
-            <textarea
-              required
-              value={comments}
-              placeholder={commentToBeEdit}
-              required
-              onChange={(e) => setComments(e.target.value)}
-            />
-            <button type="submit">edit</button>
-          </form>
-        )}
-      </div> */}
     </>
   );
 };
