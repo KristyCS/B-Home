@@ -57,17 +57,20 @@ const HomeBody = () => {
         <div className={styles.search}>
           <Dropdown className={styles.selectRegion}
             options={regionOptions}
+            required
             onChange={(value) => {
               setRegion(value.value);
             }}
             value={region}
             placeholder="I want to live at"
           />
-          <DatePicker
+          <DatePicker className={styles.date}
+          required
             selected={start_date}
             onChange={(date) => setStartDate(date)}
           />
-          <DatePicker
+          <DatePicker className={styles.date}
+            required
             selected={end_date}
             onChange={(date) => setEndDate(date)}
           />
