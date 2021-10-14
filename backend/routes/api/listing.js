@@ -13,7 +13,7 @@ router.get(
   "",
   asyncHandler(async (req, res) => {
     const listings = await Listing.findAll({
-      include: [Host, Location],
+      include: [Host, Location,Image],
     });
     res.json(listings);
   })

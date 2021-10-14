@@ -17,7 +17,7 @@ const HomeBody = () => {
   const history = useHistory();
   const listingsObj = useSelector((state) => state.listing);
   const [regionOptions, setRegionOptions] = useState(false);
-  const regionSession = localStorage.getItem("region")
+  const regionSession = localStorage.getItem("region");
   const startDateSession = localStorage.getItem("start_date");
   const endDateSession = localStorage.getItem("end_date");
 
@@ -32,10 +32,13 @@ const HomeBody = () => {
   useEffect(() => {
     const regions = [];
     for (const listing of listings) {
-      regions.push(listing.Location.city);
+      const r = listing.Location.city;
+      if (!regions.includes(r)) {
+        regions.push(listing.Location.city);
+      }
     }
     setRegionOptions(regions);
-    setRegion(regionSession)
+    setRegion(regionSession);
     setStartDate(new Date(startDateSession));
     setEndDate(new Date(endDateSession));
   }, [listings]);
@@ -51,28 +54,32 @@ const HomeBody = () => {
   return (
     <>
       <div className={styles.main}>
-        <Dropdown
-          options={regionOptions}
-          onChange={(value) => {
-            setRegion(value.value);
-          }}
-          value={region}
-          placeholder="I want to live at"
-        />
-        <DatePicker
-          selected={start_date}
-          onChange={(date) => setStartDate(date)}
-        />
-        <DatePicker selected={end_date} onChange={(date) => setEndDate(date)} />
-        <NavLink
-          to="/listings"
-          onClick={searchHandler}
-          className={styles.active}
-        >
-          {" "}
-          Search!{" "}
-        </NavLink>
-        {console.log(region)}
+        <div className={styles.search}>
+          <Dropdown className={styles.selectRegion}
+            options={regionOptions}
+            onChange={(value) => {
+              setRegion(value.value);
+            }}
+            value={region}
+            placeholder="I want to live at"
+          />
+          <DatePicker
+            selected={start_date}
+            onChange={(date) => setStartDate(date)}
+          />
+          <DatePicker
+            selected={end_date}
+            onChange={(date) => setEndDate(date)}
+          />
+          <NavLink
+            to="/listings"
+            onClick={searchHandler}
+            className={styles.active}
+          >
+            {" "}
+            Search!{" "}
+          </NavLink>
+        </div>
       </div>
     </>
   );

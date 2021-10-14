@@ -1,0 +1,10 @@
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+p{
+    margin:5px;
+    color:rgb(65, 65, 62) ;
+}

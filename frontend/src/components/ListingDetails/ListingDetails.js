@@ -27,7 +27,6 @@ const ListingDetails = () => {
     dispatch(getListings());
     dispatch(loadCommentsByListingId(parseInt(listingId, 10)));
   }, [dispatch]);
-  
    localStorage.setItem("lat",currentListing?.Location.latitude);
    localStorage.setItem("lng",currentListing?.Location.longtitude);
 
@@ -45,7 +44,6 @@ const ListingDetails = () => {
 
   const editCommentHandler = async (e) => {
     e.preventDefault();
-    console.log(e.target.id, "&&&&&&");
     const payload = {
       id: parseInt(e.target.id, 10),
       user_id: sessionUser.id,
@@ -58,12 +56,14 @@ const ListingDetails = () => {
   };
   const book = async (e) => {
     e.preventDefault();
+    const start_date = new Date(localStorage.getItem("start_date"));
+    const end_date = new Date(localStorage.getItem("end_date"))
     const payload = {
       user_id: sessionUser.id,
       listing_id: parseInt(listingId, 10),
-      start_date:new Date(localStorage.getItem("start_date")),
-      end_date:new Date(localStorage.getItem("end_date")),
-      price: 100,
+      start_date,
+      end_date,
+      price: currentListing?.price*(end_date.getDate()-start_date.getDate()),
     };
     const booking = await dispatch(createBooking(payload));
     if (booking) {
@@ -73,7 +73,6 @@ const ListingDetails = () => {
   
   return (
     <>
-    {/* { localStorage.setItem("lat",currentListing?.Location?.latitude)} */}
       <div>
         <form onSubmit={book}>
           <button type="submit"> BOOK!</button>
