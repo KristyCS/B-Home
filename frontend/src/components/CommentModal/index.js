@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CommentPage from './CommentPage';
-
+import { useEditComment } from "../../context/EditComment";
 function CommentModal({commentsNum,allComments,listingId}) {
-  const [showModal, setShowModal] = useState(false);
+  const {showCommentModal, setShowCommentModal } = useEditComment();
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>{commentsNum} reviews</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
+      <button onClick={() => setShowCommentModal(true)}>{commentsNum} reviews</button>
+      {showCommentModal && (
+        <Modal onClose={() => setShowCommentModal(false)}>
           <CommentPage allComments={allComments} listingId={listingId}/>
         </Modal>
       )}

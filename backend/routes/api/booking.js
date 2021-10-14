@@ -7,7 +7,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const {requireAuth} = require("../../utils/auth");
 // Take a second to import the database stuff you'll need
-const { Booking } = require("../../db/models");
+const { Booking,Listing, User } = require("../../db/models");
 // Here's where you'd also import other middleware
 const validateToBook = [
   check("user_id")
@@ -34,6 +34,16 @@ router.post(
   })
 );
 
+
+router.get(
+  "/:id",
+  asyncHandler(async function (req, res) {
+    const booking = await Booking.findByPk(parseInt(req.params.id),{
+      include:[Listing,User]
+    });
+    return res.json(booking);
+  })
+)
 // delete a booking
 router.delete(
   "/:id",

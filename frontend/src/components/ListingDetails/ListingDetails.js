@@ -19,7 +19,7 @@ import { useEditComment } from "../../context/EditComment";
 const ListingDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { edit, commentId, setEdit, commentToBeEdit } = useEditComment();
+  const { showLoginModal, setShowLoginModal } = useEditComment();
   const { listingId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const currentListing = useSelector((state) => state.listing[listingId]);
@@ -39,7 +39,7 @@ const ListingDetails = () => {
   const book = async (e) => {
     e.preventDefault();
     if (!sessionUser) {
-      setShowModal(true);
+      setShowLoginModal(true);
     } else {
       const start_date = new Date(localStorage.getItem("start_date"));
       const end_date = new Date(localStorage.getItem("end_date"));
@@ -61,8 +61,8 @@ const ListingDetails = () => {
   return (
     <>
       <div>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>
+        {showLoginModal && (
+          <Modal onClose={() => setShowLoginModal(false)}>
             <LoginForm />
           </Modal>
         )}

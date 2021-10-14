@@ -4,20 +4,22 @@ import * as sessionActions from "../../store/session";
 import { useSelector, useDispatch } from "react-redux";
 import CommentRow from "../CommentRow/CommentRow";
 import { useEditComment } from "../../context/EditComment";
+import LoginForm from "../LoginFormModal/LoginForm.js";
+import { Modal } from "../../context/Modal";
 import {
     createComment,
     editComment,
   } from "../../store/comment";
 function CommentPage({allComments,listingId}) {
   const dispatch = useDispatch();
-  const { edit, commentId, setEdit, commentToBeEdit } = useEditComment();
-  const [showModal, setShowModal] = useState(false);
+  const {showLoginModal, setShowLoginModal, edit, commentId, setEdit, commentToBeEdit,showCommentModal, setShowCommentModal } = useEditComment();
   const sessionUser = useSelector((state) => state.session.user);
   const [comments, setComments] = useState();
   const submitComment = async (e) => {
     e.preventDefault();
     if (!sessionUser) {
-      setShowModal(true);
+        setShowLoginModal(true);
+        setShowCommentModal(false);
     } else {
       const payload = {
         user_id: sessionUser.id,
@@ -32,7 +34,8 @@ function CommentPage({allComments,listingId}) {
   const editCommentHandler = async (e) => {
     e.preventDefault();
     if (!sessionUser) {
-      setShowModal(true);
+        setShowLoginModal(true);
+        setShowCommentModal(false);
     } else {
       const payload = {
         id: parseInt(e.target.id, 10),
@@ -47,6 +50,13 @@ function CommentPage({allComments,listingId}) {
   };
   return (
     <>
+    {/* <div>
+        {showLoginModal && (
+          <Modal onClose={() => setShowLoginModal(false)}>
+            <LoginForm />
+          </Modal>
+        )}
+      </div> */}
       <div>
         {allComments.map((singlecomment) => (
           <CommentRow key={singlecomment.id} singlecomment={singlecomment} />

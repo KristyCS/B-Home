@@ -36,6 +36,16 @@ export const loadBooking = (user_id) => async (dispatch) => {
   }
 };
 
+export const loadOneBooking =(bookingId) =>async(dispatch)=>{
+  const response = await csrfFetch(`/api/bookings/${bookingId}`);
+  if (response.ok) {
+    const booking = await response.json();
+    dispatch(addOneBooking(booking));
+    return booking;
+  }
+}
+
+
 export const createBooking = (data) => async (dispatch) => {
   console.log(data);
   const response = await csrfFetch(`/api/bookings`, {
