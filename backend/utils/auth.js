@@ -52,8 +52,10 @@ const restoreUser = (req, res, next) => {
 const requireAuth = [
   restoreUser,
   function (req, res, next) {
-    if (req.user) return next();
-
+    if (req.user) {
+      return next();
+    }
+    return res.redirect("/");
     const err = new Error("Unauthorized");
     err.title = "Unauthorized";
     err.errors = ["Unauthorized"];
