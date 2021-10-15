@@ -5,11 +5,11 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage/signupForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import HomeBody from "./components/HomeBody/HomeBody";
-import ListingSearchResults from "./components/ListingSearchResults/ListingSearchResults";
-import ListingDetails from "./components/ListingDetails/ListingDetails";
-import BookingList from "./components/BookingList/BookingList";
-import BookingDetails from "./components/BookingDetails/BookingDetails";
+import HomeBody from "./components/HomeBody";
+import ListingSearchResults from "./components/ListingSearchResults";
+import ListingDetails from "./components/ListingDetails";
+import BookingList from "./components/BookingList";
+import BookingDetails from "./components/BookingDetails";
 import MapContainer from "./components/Maps";
 function App() {
   const dispatch = useDispatch();

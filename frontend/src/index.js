@@ -42,10 +42,7 @@ function Root() {
 ReactDOM.render(
   
   <React.StrictMode>
-    <Root ><div>
-    <Favicon url='http://oflisback.github.io/react-favicon/img/github.ico' />
-    <h1>Hello, Favicon!</h1>
-  </div></Root>
+    <Root />
   </React.StrictMode>,
   document.getElementById("root")
 );
