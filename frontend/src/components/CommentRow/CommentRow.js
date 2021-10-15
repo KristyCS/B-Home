@@ -23,7 +23,7 @@ const CommentRow = ({ singlecomment }) => {
     <ul>
       <li>{singlecomment?.User?.username}</li>
       <li>{singlecomment?.comments}</li>
-      {sessionUser.id === singlecomment.user_id && (
+      {sessionUser?.id === singlecomment?.user_id && (
         <>
           <li id={singlecomment?.id} onClick={editHandler}>
             edit

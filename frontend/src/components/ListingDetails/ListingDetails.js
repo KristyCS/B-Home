@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { createBooking } from "../../store/booking";
 import { getListings } from "../../store/listing";
+import LoginFormModal from "../../components/LoginFormModal";
 import CommentModal from "../CommentModal";
 import { loadCommentsByListingId } from "../../store/comment";
 import * as sessionActions from "../../store/session";
