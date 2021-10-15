@@ -47,7 +47,6 @@ export const loadOneBooking =(bookingId) =>async(dispatch)=>{
 
 
 export const createBooking = (data) => async (dispatch) => {
-  console.log(data);
   const response = await csrfFetch(`/api/bookings`, {
     method: "post",
     headers: {

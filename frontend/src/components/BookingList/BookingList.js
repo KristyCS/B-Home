@@ -35,7 +35,7 @@ const BookingList = () => {
         </thead>
         <tbody>
           {bookings.map((booking) => (
-            <tr>
+            <tr key={booking.id}>
               <td>{booking?.Listing?.name}</td>
               <td>{booking?.start_date}</td>
               <td>{booking?.end_date}</td>

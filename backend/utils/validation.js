@@ -10,7 +10,7 @@ const handleValidationErrors = (req, _res, next) => {
     const errors = validationErrors
       .array()
       .map((error) => `${error.msg}`);
-
+    console.log(validationErrors,"到底是什么错")
     const err = Error('Bad request.');
     err.errors = errors;
     err.status = 400;

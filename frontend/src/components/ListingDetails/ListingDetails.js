@@ -19,6 +19,7 @@ const ListingDetails = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const currentListing = useSelector((state) => state.listing[listingId]);
   const allComments = useSelector((state) => Object.values(state.comments));
+  const [errors, setErrors] = useState([]);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser());
@@ -33,18 +34,26 @@ const ListingDetails = () => {
     if (!sessionUser) {
       setShowLoginModal(true);
     } else {
-      const start_date = new Date(localStorage.getItem("start_date"));
-      const end_date = new Date(localStorage.getItem("end_date"));
+      const start_date = localStorage.getItem("start_date");
+      const end_date = localStorage.getItem("end_date");
       const payload = {
         user_id: sessionUser.id,
         listing_id: parseInt(listingId, 10),
         start_date,
         end_date,
-        price:
-          currentListing?.price * (end_date.getDate() - start_date.getDate()),
+        price: 100,
+        // currentListing?.price * ((new Date(end_date)).getDate() - (new Date(start_date)).getDate()),
       };
-      const booking = await dispatch(createBooking(payload));
-      if (booking) {
+      let booking;
+      const response = await dispatch(createBooking(payload)).catch(
+        async (res) => {
+          booking = await res.json();
+          if (booking.errors.length) {
+            setErrors(booking.errors);
+          }
+        }
+      );
+      if (response) {
         history.push(`/users/${sessionUser.id}/bookings`);
       }
     }
@@ -52,6 +61,7 @@ const ListingDetails = () => {
 
   return (
     <>
+      {" "}
       <div>
         {showLoginModal && (
           <Modal onClose={() => setShowLoginModal(false)}>
@@ -59,6 +69,11 @@ const ListingDetails = () => {
           </Modal>
         )}
       </div>
+      <ul>
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
       <div className={styles.title}>
         <h2> {currentListing?.name}</h2>
         <button
