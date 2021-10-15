@@ -14,12 +14,12 @@ import { loadBooking } from "../../store/booking";
 
 const BookingList = () => {
   const dispatch = useDispatch();
-  const { userId } = useParams();
-
+  const {userId} = useParams()
+  // const userId  = useSelector((state)=>state.session?.user?.id);
   let bookings = useSelector((state) => state.booking);
   bookings = Object.values(bookings);
   useEffect(() => {
-    dispatch(loadBooking(parseInt(userId, 10)));
+    dispatch(loadBooking(parseInt(userId)));
   }, [dispatch]);
 
   return (

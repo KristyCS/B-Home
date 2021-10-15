@@ -25,7 +25,6 @@ router.post(
     const review = await Review.create(req.body);
     const user = await User.findByPk(review.user_id);
     review.dataValues.User = user;
-    console.log(review,'在后台里')
     return res.json(review);
   })
 );

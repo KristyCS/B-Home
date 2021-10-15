@@ -22,7 +22,7 @@ const BookingDetails = () => {
 
   const deleteHandler = () => {
     dispatch(deleteBooking(parseInt(bookingId, 10)));
-    history.push("/users/userId/bookings");
+    history.push(`/users/${userId}/bookings`);
   };
   return (
     <>

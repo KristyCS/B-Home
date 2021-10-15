@@ -23,7 +23,6 @@ const listingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_LISTINGS:
       const newState = { ...state };
-      console.log(action.listings);
       action.listings.forEach((listing) => {
         newState[listing.id] = listing;
       });

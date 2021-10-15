@@ -33,7 +33,6 @@ export const deleteComment = (commentId) => async (dispatch) => {
 };
 
 export const editComment = (comment) => async (dispatch) => {
-  console.log("我在store!!!!!!!", comment);
   const response = await csrfFetch(`/api/reviews/${comment.id}`, {
     method: "put",
     headers: {
@@ -58,7 +57,6 @@ export const loadCommentsByListingId = (listing_id) => async (dispatch) => {
 };
 
 export const createComment = (data) => async (dispatch) => {
-  console.log(data);
   const response = await csrfFetch(`/api/reviews`, {
     method: "post",
     headers: {
