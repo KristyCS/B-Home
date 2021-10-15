@@ -20,6 +20,7 @@ function App() {
 
   return (
     <>
+    
       <Navigation isLoaded={isLoaded} />
       <Switch>
         <Route exact path="/searchListings">

@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import Favicon from 'react-favicon'
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
@@ -39,8 +40,12 @@ function Root() {
 }
 
 ReactDOM.render(
+  
   <React.StrictMode>
-    <Root />
+    <Root ><div>
+    <Favicon url='http://oflisback.github.io/react-favicon/img/github.ico' />
+    <h1>Hello, Favicon!</h1>
+  </div></Root>
   </React.StrictMode>,
   document.getElementById("root")
 );
