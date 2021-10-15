@@ -1,7 +1,7 @@
 // frontend/src/components/LoginFormModal/index.js
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import SignupForm from './signupForm1';
+import SignupForm from './signupForm';
 
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
