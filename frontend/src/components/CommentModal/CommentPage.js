@@ -1,7 +1,7 @@
 // frontend/src/components/LoginFormModal/LoginForm.js
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import CommentRow from "../CommentRow/CommentRow";
+import CommentRow from "../CommentRow";
 import { useEditComment } from "../../context/EditComment";
 import {
     createComment,

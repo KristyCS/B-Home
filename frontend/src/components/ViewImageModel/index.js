@@ -1,21 +1,39 @@
-// frontend/src/components/LoginFormModal/index.js
+// frontend/src/components/LoginFormPage/index.js
 import React, { useState } from 'react';
-import { Modal } from '../../context/Modal';
-import LoginForm from './LoginForm';
+import * as sessionActions from '../../store/session';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import styles from './ViewImageModel.module.css';
+function ViewImageModel({images}) {
+  
 
-function LoginFormModal() {
-  const [showModal, setShowModal] = useState(false);
 
   return (
-    <>
-      <button onClick={() => setShowModal(true)}>Log In</button>
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
-        </Modal>
-      )}
-    </>
+    <form id={styles.asdf} onSubmit={handleSubmit}>
+      <ul>
+        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
+      <label className={styles.label}>
+        Username or Email
+        <input
+          type="text"
+          value={credential}
+          onChange={(e) => setCredential(e.target.value)}
+          required
+        />
+      </label>
+      <label>
+        Password
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit">Log In</button>
+    </form>
   );
 }
 
-export default LoginFormModal;
+export default ViewImageModel;

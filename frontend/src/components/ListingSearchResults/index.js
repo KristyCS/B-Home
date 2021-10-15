@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./ListingSearchResults.module.css";
 import { NavLink } from "react-router-dom";
 import { getListings } from "../../store/listing";
-import SingleListingSearchResult from "../SingleListingSearchResult/singleListingSearchResult";
+import SingleListingSearchResult from "../SingleListingSearchResult";
 
 const ListingSearchResults = () => {
   const dispatch = useDispatch();
