@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { createBooking } from "../../store/booking";
 import { getListings } from "../../store/listing";
-import LoginFormModal from "../LoginFormModal";
+import MapContainer from "../Maps";
 import CommentModal from "../CommentModal";
 import { loadCommentsByListingId } from "../../store/comment";
 import * as sessionActions from "../../store/session";
@@ -21,7 +21,11 @@ const ListingDetails = () => {
   const currentListing = useSelector((state) => state.listing[listingId]);
   const allComments = useSelector((state) => Object.values(state.comments));
   const [errors, setErrors] = useState([]);
-
+  let amenitiesString = currentListing?.amenities;
+  amenitiesString = amenitiesString?.replace(/['"]+/g, "");
+  amenitiesString = amenitiesString?.replace("{", "");
+  amenitiesString = amenitiesString?.replace("}", "");
+  const amentiesArr = amenitiesString?.split(",");
   useEffect(() => {
     dispatch(sessionActions.restoreUser());
     dispatch(getListings());
@@ -44,7 +48,9 @@ const ListingDetails = () => {
         end_date,
         price:
           currentListing?.price *
-          Math.ceil((new Date(end_date) - new Date(start_date)) / (1000 * 60 * 60 * 24)),
+          Math.ceil(
+            (new Date(end_date) - new Date(start_date)) / (1000 * 60 * 60 * 24)
+          ),
       };
       let booking;
       const response = await dispatch(createBooking(payload)).catch(
@@ -105,16 +111,28 @@ const ListingDetails = () => {
           Entire {currentListing?.property_type} hosted by{" "}
           {currentListing?.Host.name}
         </h3>
-        <p>
+        <p className={styles.briefInfo}>
           {currentListing?.accommodates} guests ·{" "}
           {currentListing?.property_type} · {currentListing?.beds}beds ·{" "}
           {currentListing?.bathrooms}bath
         </p>
-        <label> Description </label>
-        <p> {currentListing?.description} </p>
+
+        <h4> Description </h4>
+        <p className={styles.description}> {currentListing?.description} </p>
       </div>
-      <div>
-        <h3>What this place offers </h3>
+      <div className={styles.amenities}>
+        <h4>What this place offers </h4>
+        <ul>
+          <div className={styles.amenitiesList}>
+            {amentiesArr?.map((amenty, i) => (
+              <li key={i}> {amenty}</li>
+            ))}
+          </div>
+        </ul>
+      </div>
+      <div className={styles.location}>
+        <h4 className={styles.map}>Where is this place </h4>
+        <MapContainer className={styles.map}/>
       </div>
     </>
   );

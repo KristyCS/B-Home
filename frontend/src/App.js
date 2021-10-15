@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route exact path="/listings/:listingId">
           <ListingDetails />
-          <MapContainer/>
+         
         </Route>
         <Route exact path="/bookings/:bookingId">
           <BookingDetails />

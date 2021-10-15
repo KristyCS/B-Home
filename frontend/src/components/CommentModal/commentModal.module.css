@@ -1,0 +1,12 @@
+.review{
+    margin-left: 25%;
+    background-color: powderblue;
+    transition: background-color .5s;
+    padding:5px;
+    border-radius: 5px;
+}
+
+.review:hover{
+    background-color: gold;
+    border-radius: 5px;
+}
