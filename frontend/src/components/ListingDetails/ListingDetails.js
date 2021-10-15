@@ -41,14 +41,15 @@ const ListingDetails = () => {
         listing_id: parseInt(listingId, 10),
         start_date,
         end_date,
-        price: 100,
-        // currentListing?.price * ((new Date(end_date)).getDate() - (new Date(start_date)).getDate()),
+        price:
+          currentListing?.price *
+          Math.ceil((new Date(end_date) - new Date(start_date)) / (1000 * 60 * 60 * 24)),
       };
       let booking;
       const response = await dispatch(createBooking(payload)).catch(
         async (res) => {
           booking = await res.json();
-          if (booking.errors.length) {
+          if (booking?.errors?.length) {
             setErrors(booking.errors);
           }
         }
