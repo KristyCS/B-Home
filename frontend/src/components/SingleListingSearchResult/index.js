@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteComment } from "../../store/comment";
 import { useEditComment } from "../../context/EditComment";
-import styles from "./SingleListingSearchResult.module.css"
+import styles from "./singleListingSearchResult.module.css"
 import { useHistory } from "react-router";
 const SingleListingSearchResult = ({ listing }) => {
 const history = useHistory();

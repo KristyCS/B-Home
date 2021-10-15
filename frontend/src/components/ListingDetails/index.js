@@ -10,7 +10,7 @@ import { loadCommentsByListingId } from "../../store/comment";
 import * as sessionActions from "../../store/session";
 import LoginForm from "../LoginFormModal/loginForm.js";
 import { Modal } from "../../context/Modal";
-import styles from "./ListingDetails.module.css";
+import styles from "./listingDetails.module.css";
 import { useEditComment } from "../../context/EditComment";
 const ListingDetails = () => {
   const dispatch = useDispatch();

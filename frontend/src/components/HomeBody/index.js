@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import styles from "./HomeBody.module.css";
+import styles from "./homeBody.module.css";
 import { NavLink } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
