@@ -1,7 +1,7 @@
 .review{
     margin-left: 25%;
     background-color: powderblue;
-    transition: background-color .5s;
+    transition: .5s;
     padding:5px;
     border-radius: 5px;
 }
@@ -12,5 +12,23 @@
 }
 
 .commentBody{
-    background-color:aqua;
+    background-color:rgb(245, 245, 237);
+    
+}
+.editButton{
+    color:black;
+    transition: .5s;
+}
+.editButton:hover{
+  color: red;
+}
+.singleCommentContainer{
+    display:flex;
+    gap:1px;
+}
+
+
+.textarea{
+    margin-left: 20px;
+    margin-right:10px;
 }

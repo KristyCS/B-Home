@@ -3,7 +3,7 @@ import { useEditComment } from "../../context/EditComment";
 import { useSelector, useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { useEffect, useState } from "react";
-
+import styles from "./commentRow.module.css";
 const CommentRow = ({ singlecomment }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -20,18 +20,18 @@ const CommentRow = ({ singlecomment }) => {
     dispatch(deleteComment(e.target.id));
   };
   return (
-    <ul>
-      <li>{singlecomment?.User?.username}</li>
-      <li>{singlecomment?.comments}</li>
+    <ul className={styles.singleCommentContainer}>
+      <li>user: {singlecomment?.User?.username}</li>
+      <li>comment: {singlecomment?.comments}</li>
       {sessionUser?.id === singlecomment?.user_id && (
-        <>
-          <li id={singlecomment?.id} onClick={editHandler}>
+        <div className={styles.buttons}>
+          <p className={styles.editButton} id={singlecomment?.id} onClick={editHandler}>
             edit
-          </li>
-          <li id={singlecomment?.id} onClick={deleteHandler}>
+          </p>
+          <p className={styles.deleteButton} id={singlecomment?.id} onClick={deleteHandler}>
             delete
-          </li>
-        </>
+          </p>
+        </div>
       )}
     </ul>
   );

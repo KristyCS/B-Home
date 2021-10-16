@@ -1,0 +1,22 @@
+.singleBooking {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  border: solid rgb(216, 241, 249) 3px;
+  border-radius: 5px;
+}
+h3 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  width: 50%;
+  text-align: center;
+}
+.title p {
+  font: 1.1em "Fira Sans", sans-serif;
+  background-color: rgb(214, 243, 249);
+}
+.content p {
+  background-color: rgb(230, 244, 247);
+}

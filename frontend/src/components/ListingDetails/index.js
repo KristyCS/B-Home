@@ -102,7 +102,7 @@ const ListingDetails = () => {
         />
       </div>
       <div className={styles.imageShow}>
-        {currentListing?.Images.map((singleImage) => (
+        {currentListing?.Images.map((singleImage, i) => (
           <img key={singleImage.id} src={singleImage.img_url} />
         ))}
       </div>
@@ -120,6 +120,7 @@ const ListingDetails = () => {
         <h4> Description </h4>
         <p className={styles.description}> {currentListing?.description} </p>
       </div>
+      <div className={styles.two}>
       <div className={styles.amenities}>
         <h4>What this place offers </h4>
         <ul>
@@ -133,7 +134,7 @@ const ListingDetails = () => {
       <div className={styles.location}>
         <h4 className={styles.map}>Where is this place </h4>
         <MapContainer className={styles.map}/>
-      </div>
+      </div></div>
     </>
   );
 };

@@ -48,7 +48,7 @@ function CommentPage({allComments,listingId}) {
   };
   return (
     <div className={styles.commentBody}>
-      <div>
+      <div className={styles.comments}>
         {allComments.map((singlecomment) => (
           <CommentRow key={singlecomment.id} singlecomment={singlecomment} />
         ))}
@@ -56,7 +56,7 @@ function CommentPage({allComments,listingId}) {
       <div>
         {!edit && (
           <form onSubmit={submitComment}>
-            <textarea
+            <textarea className={styles.textarea}
               value={comments}
               required
               placeholder="Add your entry"
@@ -67,7 +67,7 @@ function CommentPage({allComments,listingId}) {
         )}
         {edit && (
           <form id={commentId} onSubmit={editCommentHandler}>
-            <textarea
+            <textarea  className={styles.textarea}
               required
               value={comments}
               placeholder={commentToBeEdit}

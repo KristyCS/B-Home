@@ -1,0 +1,20 @@
+.listingTable{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.listingRowHead{
+    background-color:lightblue;
+}
+
+.listingRow{
+    background-color:aliceblue
+}
+
+.link{
+    text-decoration: none;
+}
+.view:hover{
+    background-color: rgb(189, 230, 244);
+    text-decoration: none;
+}
