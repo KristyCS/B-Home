@@ -7,6 +7,7 @@ import {
     createComment,
     editComment,
   } from "../../store/comment";
+import styles from "../CommentModal/commentModal.module.css"
 function CommentPage({allComments,listingId}) {
   const dispatch = useDispatch();
   const {setShowLoginModal, edit, commentId, setEdit, commentToBeEdit,showCommentModal, setShowCommentModal } = useEditComment();
@@ -46,7 +47,7 @@ function CommentPage({allComments,listingId}) {
     }
   };
   return (
-    <>
+    <div className={styles.commentBody}>
       <div>
         {allComments.map((singlecomment) => (
           <CommentRow key={singlecomment.id} singlecomment={singlecomment} />
@@ -77,7 +78,7 @@ function CommentPage({allComments,listingId}) {
           </form>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
