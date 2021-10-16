@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-
+import styles from "./signupFormModal.module.css";
 function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -31,14 +31,14 @@ function SignupForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
       <label>
-        Email
+        Email:{" "}
         <input
           type="text"
           value={email}
@@ -47,7 +47,7 @@ function SignupForm() {
         />
       </label>
       <label>
-        Username
+        Username:{" "}
         <input
           type="text"
           value={username}
@@ -56,7 +56,7 @@ function SignupForm() {
         />
       </label>
       <label>
-        Password
+        Password:{" "}
         <input
           type="password"
           value={password}
@@ -65,7 +65,7 @@ function SignupForm() {
         />
       </label>
       <label>
-        Confirm Password
+        Confirm Password:{" "}
         <input
           type="password"
           value={confirmPassword}
@@ -73,7 +73,7 @@ function SignupForm() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className={styles.modalSignUpBn} type="submit">Sign Up</button>
     </form>
   );
 }

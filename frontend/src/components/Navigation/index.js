@@ -25,7 +25,6 @@ function Navigation({ isLoaded }){
       <p className="" onClick={HandlDemoLogin}>Demo User</p>
         <LoginFormModal />
         <SignupFormModal />
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
   }

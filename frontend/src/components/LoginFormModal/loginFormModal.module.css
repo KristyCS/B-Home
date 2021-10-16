@@ -1,0 +1,31 @@
+.form{
+    background-color:rgb(219, 244, 252);
+    border: solid blue 6px;
+    border-radius: 8px;
+    padding:20px;
+    gap:4px;
+    display: flex;
+    flex-direction: column;
+    
+}
+label{
+  top: 50%;
+  left: 5px;
+  color: #114ef7;
+  transform: translateY(-50%);
+  font-size: 16px;
+  transition: .5s;
+}
+input{
+    border: none;
+    border-bottom: lightGrey solid 2px;
+    background: none;
+    outline: none;
+    width:80px;
+    height:20px;
+}
+
+button{
+    width:60px;
+    margin:auto;
+}
