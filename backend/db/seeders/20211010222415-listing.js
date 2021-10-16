@@ -228,7 +228,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          host_id: 1,
+          host_id: 5,
           location_id: 11,
           name: "Tranquility on Top of the Hill",
           summary: "Cozy, sunny, family home.  Master bedroom high ceilings. Deck, garden with hens, beehives & play structure.   Short walk to charming village with  attractive stores, groceries & local restaurants. Friendly neighborhood. Access public transportation.",
@@ -251,7 +251,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          host_id: 1,
+          host_id: 5,
           location_id: 12,
           name: "New Lrg Studio apt 15 min to Boston",
           summary: "Super comfy bedroom plus your own bathroom in our big, sunny condo. Roslindale is an outer neighborhood of Boston. For guests interested in downtown Boston, we are a 45-minute ride via public transportation. We're also just steps from the Arnold Arboretum, nature's gift to Boston. Driveway parking is available.",

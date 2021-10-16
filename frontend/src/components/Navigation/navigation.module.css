@@ -1,23 +1,28 @@
-/* .nav{
+.nav{
     display:flex;
     align-items: baseline;
     justify-content: space-between;
 }
 
-.leftNav{
+.home{
     display:flex;
     margin-left: 20px;
 }
 
-.rightNav {
+.home p{
+  text-decoration: none;
+  border: none;
+}
+
+.logSin {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   margin-right: 20px;
   gap: 10px;
   align-items: baseline;
 }
 
-div.rightNav a {
+/* div.rightNav a {
   text-decoration: none;
   border:solid 0.1em black;
   border-radius:5px
@@ -41,4 +46,4 @@ button{
 button:hover {
   color:white;
   background-color:rgb(44, 44, 242);
-} */
+} */ 

@@ -125,7 +125,8 @@ module.exports = {
         },
         {
           listing_id: 7,
-          img_url: "https://unsplash.com/photos/L7EwHkq1B2s",
+          img_url:
+            "https://images.unsplash.com/photo-1501127122-f385ca6ddd9d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fHJvb218ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

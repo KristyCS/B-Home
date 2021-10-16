@@ -109,7 +109,7 @@ const ListingDetails = () => {
       <div className={styles.info}>
         <h3>
           Entire {currentListing?.property_type} hosted by{" "}
-          {currentListing?.Host.name}
+          {currentListing?.Host?.name}
         </h3>
         <p className={styles.briefInfo}>
           {currentListing?.accommodates} guests ·{" "}
